@@ -5,6 +5,7 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
     initialValues || {
       name: "",
       category: "",
+      manufacturerCountry: "", // New field added to state
       price: "",
       description: "",
       imageUrl: "",
@@ -18,6 +19,7 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Ensure price is sent as a number while passing all other fields
     onSubmit({
       ...formData,
       price: Number(formData.price),
@@ -29,10 +31,28 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
       <h2>{submitText}</h2>
 
       <label>Item Name</label>
-      <input name="name" value={formData.name} onChange={handleChange} required />
+      <input 
+        name="name" 
+        value={formData.name} 
+        onChange={handleChange} 
+        required 
+      />
 
       <label>Category</label>
-      <input name="category" value={formData.category} onChange={handleChange} required />
+      <input 
+        name="category" 
+        value={formData.category} 
+        onChange={handleChange} 
+        required 
+      />
+
+      <label>Manufacturer Country</label>
+      <input 
+        name="manufacturerCountry" 
+        value={formData.manufacturerCountry} 
+        onChange={handleChange} 
+        required 
+      />
 
       <label>Price</label>
       <input
@@ -53,9 +73,15 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
       />
 
       <label>Image URL</label>
-      <input name="imageUrl" value={formData.imageUrl} onChange={handleChange} />
+      <input 
+        name="imageUrl" 
+        value={formData.imageUrl} 
+        onChange={handleChange} 
+      />
 
-      <button className="btn primary" type="submit">{submitText}</button>
+      <button className="btn primary" type="submit">
+        {submitText}
+      </button>
     </form>
   );
 }
